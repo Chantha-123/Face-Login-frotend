@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="faceLoginApp">
+<head>
+    <title>Face Login System</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- AngularJS and Routing -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    
+    <!-- App Scripts - IMPORTANT: Load in correct order -->
+    <script src="js/app.js"></script> <!-- Main app module with MainController -->
+    <script src="js/services/auth.service.js"></script> <!-- Services next -->
+    <script src="js/controllers/login.controller.js"></script> <!-- Then controllers -->
+    <script src="js/controllers/register.controller.js"></script>
+    <script src="js/controllers/dashboard.controller.js"></script>
+    <script src="js/directives/file.directive.js"></script> <!-- Directives last -->
+</head>
+<body ng-controller="MainController as mainCtrl">
+    <!-- Main Navigation -->
+    <nav class="navbar" ng-show="mainCtrl.showNavigation()">
+        <div class="nav-brand">
+            <h1>👤 Face Login System</h1>
+        </div>
+        <div class="nav-actions" ng-if="mainCtrl.currentUser">
+            <span>Welcome, {{mainCtrl.currentUser.username}}</span>
+            <button class="btn btn-logout" ng-click="mainCtrl.logout()" ng-disabled="mainCtrl.loading">
+                <span ng-if="!mainCtrl.loading">🚪 Logout</span>
+                <span ng-if="mainCtrl.loading" class="loading"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div ng-view></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Face Login System. Built with AngularJS & Spring Boot.</p>
+    </footer>
+</body>
+</html>

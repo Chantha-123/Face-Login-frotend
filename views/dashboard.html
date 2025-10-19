@@ -1,0 +1,25 @@
+<div class="dashboard-container">
+    <div class="card">
+        <div class="card-header">
+            <h2>🎉 Welcome to Face Login System</h2>
+        </div>
+
+        <div class="card-body">
+            <div class="user-info" ng-if="dashboardCtrl.currentUser">
+                <div class="avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <h3>Hello, {{dashboardCtrl.currentUser.username}}!</h3>
+                <p><strong>Email:</strong> {{dashboardCtrl.currentUser.email}}</p>
+                <p><strong>User ID:</strong> {{dashboardCtrl.currentUser.id}}</p>
+                <p class="welcome-message">You have successfully logged in using face recognition!</p>
+            </div>
+
+            <div class="dashboard-actions">
+                <button class="btn btn-logout" ng-click="dashboardCtrl.logout()">
+                    🚪 Logout
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

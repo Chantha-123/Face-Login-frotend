@@ -1,0 +1,21 @@
+<md-dialog aria-label="Image Preview" class="preview-dialog">
+    <md-dialog-content class="md-dialog-content">
+        <h2 class="md-title">Preview Image</h2>
+        <div class="preview-container">
+            <img ng-src="{{vm.imageDataUrl}}" alt="Captured Image" class="preview-image">
+        </div>
+        <p>Is this image OK?</p>
+    </md-dialog-content>
+    
+    <md-dialog-actions layout="row" layout-align="end center">
+        <md-button ng-click="vm.retake()" class="md-warn">
+            Retake
+        </md-button>
+        <md-button ng-click="vm.cancel()">
+            Cancel
+        </md-button>
+        <md-button ng-click="vm.confirm()" class="md-primary">
+            Use This Image
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

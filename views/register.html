@@ -1,0 +1,92 @@
+<div class="register-container fade-in-up" ng-controller="RegisterController as registerCtrl">
+    <div class="card shadow">
+        <div class="card-header text-center">
+            <h3>👤 Face Login Registration</h3>
+            <p>Register securely using face recognition</p>
+        </div>
+
+        <div class="card-body">
+            <!-- User Info -->
+            <div class="section">
+                <h3 class="section-title">📝 Personal Information</h3>
+                <div class="form-group">
+                    <label>Username *</label>
+                    <input type="text" ng-model="registerCtrl.userData.username" class="form-control" placeholder="Enter username" required>
+                </div>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" ng-model="registerCtrl.userData.email" class="form-control" placeholder="Enter email address" required>
+                </div>
+            </div>
+
+            <!-- Face Capture -->
+            <div class="section">
+                <h3 class="section-title">📷 Face Registration</h3>
+
+                <!-- Camera Placeholder -->
+                <div class="camera-placeholder" 
+                     ng-click="registerCtrl.openCameraDialog()" 
+                     ng-if="!registerCtrl.capturedImage">
+                    <div class="placeholder-content">
+                        <div class="camera-icon">📸</div>
+                        <div class="placeholder-text">Click to Open Camera</div>
+                        <small class="hint">Make sure your face is well lit and centered</small>
+                    </div>
+                </div>
+
+                <!-- Captured Image -->
+                <div class="section" ng-if="registerCtrl.capturedImage">
+                    <h3>✅ Face Captured</h3>
+                    <div class="text-center">
+                        <img ng-src="{{registerCtrl.capturedImage}}" alt="Captured face" class="preview-image shadow">
+                        <div class="controls">
+                            <button class="btn btn-warning" ng-click="registerCtrl.retakeImage()">🔄 Retake Photo</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Option -->
+            <div class="section upload-section">
+                <h3 class="section-title">📁 Upload Face Image</h3>
+                <p class="hint">Or upload a clear photo of your face</p>
+                <input type="file" file-model="registerCtrl.faceImage" accept="image/*" class="file-input">
+            </div>
+
+            <!-- Alerts -->
+            <div class="alert" 
+                 ng-class="{'alert-success': registerCtrl.isSuccess, 'alert-danger': !registerCtrl.isSuccess}" 
+                 ng-if="registerCtrl.message">
+                {{registerCtrl.message}}
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="controls text-center">
+                <button class="btn btn-primary btn-lg" 
+                        ng-click="registerCtrl.register()" 
+                        ng-disabled="!registerCtrl.userData.username || !registerCtrl.userData.email">
+                    🚀 Create Account
+                </button>
+                <button class="btn btn-outline" ng-click="registerCtrl.goToLogin()">← Back to Login</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camera Dialog -->
+    <div class="camera-dialog" ng-if="registerCtrl.showCameraDialog">
+        <div class="camera-overlay">
+            <div class="camera-box">
+                <h3>🎥 Live Camera</h3>
+                <video id="cameraVideo" autoplay playsinline muted></video>
+
+                <div class="face-frame"></div>
+
+                <div class="controls">
+                    <button class="btn btn-success" ng-click="registerCtrl.captureFromDialog()">📸 Capture</button>
+                    <button class="btn btn-warning" ng-click="registerCtrl.retakeImage()">🔄 Retake</button>
+                    <button class="btn btn-outline" ng-click="registerCtrl.closeCameraDialog()">❌ Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
