@@ -35,10 +35,10 @@
             <span class="loading"></span> Scanning face, please hold still...
           </div>
 
-          <div class="controls">
+          <!-- <div class="controls">
             <button class="btn btn-success" ng-click="loginCtrl.captureImage()">📸 Capture</button>
             <button class="btn btn-outline" ng-click="loginCtrl.closeCamera()">❌ Close</button>
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -48,7 +48,7 @@
         <div class="text-center">
           <img ng-src="{{loginCtrl.capturedImage}}" alt="Captured face" class="preview-image">
           <div class="controls">
-            <button class="btn btn-warning" ng-click="loginCtrl.retakeImage()">🔄 Retake</button>
+            <button class="btn btn-warning" ng-click="loginCtrl.retakeImage()">🔄 Rescan</button>
           </div>
         </div>
       </div>
